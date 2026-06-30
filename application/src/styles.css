@@ -83,12 +83,6 @@ button {
   gap: 12px;
 }
 
-.brand img {
-  width: 46px;
-  height: 46px;
-  object-fit: contain;
-}
-
 .brand strong {
   display: block;
   font-size: 19px;
@@ -241,13 +235,6 @@ button {
   align-items: center;
   gap: 10px;
   margin-bottom: 16px;
-}
-
-.app-title img,
-.profile-header img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
 }
 
 .app-title div,
@@ -1336,12 +1323,6 @@ input[type="range"] {
   .app-title,
   .profile-header {
     margin-bottom: 10px;
-  }
-
-  .app-title img,
-  .profile-header img {
-    width: 24px;
-    height: 24px;
   }
 
   .app-title b,

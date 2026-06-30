@@ -254,7 +254,6 @@ function SidePanel({ selectedPlan, setScreen, screen, readinessScore, warmupFlow
   return (
     <aside className="side-panel">
       <div className="brand">
-        <img src={ASSET("warmup-logo.png")} alt="热身 App logo" />
         <div>
           <strong>热身 App</strong>
           <span>训练前 8 分钟助手</span>
@@ -316,7 +315,6 @@ function HomeScreen({ selectedPlan, onStart }) {
   return (
     <div className="screen-content home-screen">
       <div className="app-title">
-        <img src={ASSET("warmup-logo-256.png")} alt="" />
         <div>
           <b>热身 App</b>
           <span>新手训练前的 8 分钟助手</span>
@@ -712,7 +710,6 @@ function ProfileScreen({ plan, onWarmup }) {
     <div className="screen-content profile-screen">
       <div className="profile-header">
         <div>
-          <img src={ASSET("warmup-logo-256.png")} alt="" />
           <span>我的</span>
         </div>
         <button>编辑资料</button>
