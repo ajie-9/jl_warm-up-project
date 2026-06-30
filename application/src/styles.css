@@ -1490,6 +1490,148 @@ input[type="range"] {
   .bottom-nav button {
     border-radius: 16px;
   }
+
+  .rest-screen {
+    height: calc(100dvh - 30px);
+    padding: 6px 14px 12px;
+    overflow: hidden;
+  }
+
+  .rest-screen .screen-header {
+    min-height: 34px;
+    margin-bottom: 0;
+    grid-template-columns: 34px 1fr 34px;
+  }
+
+  .rest-screen .screen-header h2 {
+    font-size: 17px;
+  }
+
+  .rest-screen .icon-btn,
+  .rest-screen .help-btn,
+  .rest-screen .header-spacer {
+    width: 32px;
+    height: 32px;
+  }
+
+  .rest-hero-panda {
+    height: 56px;
+    margin-top: 0;
+  }
+
+  .rest-hero-panda::before {
+    bottom: -50px;
+    width: 138px;
+    height: 104px;
+  }
+
+  .rest-hero-panda img {
+    width: 62px;
+    height: 62px;
+  }
+
+  .rest-warning-card {
+    min-height: 104px;
+    grid-template-columns: minmax(0, 1fr) 44px;
+    gap: 8px;
+    border-radius: 18px;
+    padding: 11px 13px;
+  }
+
+  .rest-warning-card span {
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .rest-warning-card span svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .rest-warning-card h1 {
+    margin: 5px 0 3px;
+    font-size: 23px;
+  }
+
+  .rest-warning-card p {
+    font-size: 12px;
+    line-height: 1.38;
+  }
+
+  .rest-warning-card > svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .discomfort-card {
+    margin-top: 7px;
+    border-radius: 16px;
+    padding: 9px 11px;
+  }
+
+  .discomfort-card h2 {
+    margin-bottom: 7px;
+    font-size: 15px;
+  }
+
+  .discomfort-card div {
+    gap: 8px;
+  }
+
+  .discomfort-card span {
+    min-height: 34px;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .discomfort-card span svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .comfort-card {
+    grid-template-columns: 44px 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .comfort-card img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .comfort-card p {
+    border-radius: 15px;
+    padding: 9px 11px;
+    font-size: 13px;
+    line-height: 1.36;
+  }
+
+  .rest-screen .primary-btn,
+  .rest-screen .danger-btn {
+    min-height: 38px;
+    margin-top: 8px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+
+  .rest-screen .primary-btn svg,
+  .rest-screen .danger-btn svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .medical-note {
+    min-height: 32px;
+    margin-top: 7px;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+
+  .medical-note svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 @media (max-width: 380px) {
