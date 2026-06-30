@@ -1472,6 +1472,147 @@ input[type="range"] {
     border-radius: 16px;
   }
 
+  .profile-screen {
+    height: 100dvh;
+    padding: 12px 10px calc(64px + env(safe-area-inset-bottom));
+    overflow: hidden;
+  }
+
+  .profile-screen .profile-header {
+    margin-bottom: 8px;
+  }
+
+  .profile-screen .profile-header button,
+  .profile-screen .records-card button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .profile-screen .user-card {
+    gap: 10px;
+    min-height: 72px;
+    border-radius: 16px;
+    padding: 9px 12px;
+  }
+
+  .profile-screen .user-card img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .profile-screen .user-card h1 {
+    font-size: 18px;
+  }
+
+  .profile-screen .user-card p {
+    margin: 2px 0;
+    font-size: 11px;
+  }
+
+  .profile-screen .user-card span {
+    padding: 3px 9px;
+    font-size: 10px;
+  }
+
+  .profile-screen .today-card {
+    margin-top: 8px;
+    border-radius: 16px;
+    padding: 10px 12px;
+  }
+
+  .profile-screen .today-card > b {
+    top: 11px;
+    right: 12px;
+    font-size: 13px;
+  }
+
+  .profile-screen .today-card span {
+    font-size: 11px;
+  }
+
+  .profile-screen .today-card h2 {
+    margin: 2px 0;
+    font-size: 18px;
+  }
+
+  .profile-screen .today-card p {
+    max-width: 230px;
+    font-size: 10px;
+  }
+
+  .profile-screen .steps {
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .profile-screen .steps span {
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
+  }
+
+  .profile-screen .stats-grid {
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .profile-screen .stat-card {
+    min-height: 58px;
+    border-radius: 14px;
+    padding: 8px 9px;
+  }
+
+  .profile-screen .stat-card span {
+    font-size: 10px;
+  }
+
+  .profile-screen .stat-card b {
+    margin-top: 4px;
+    font-size: 18px;
+  }
+
+  .profile-screen .stat-card em {
+    top: 7px;
+    right: 7px;
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+
+  .profile-screen .records-card {
+    margin-top: 8px;
+    border-radius: 16px;
+    padding: 10px;
+  }
+
+  .profile-screen .section-heading {
+    margin-bottom: 6px;
+  }
+
+  .profile-screen .section-heading h2 {
+    font-size: 15px;
+  }
+
+  .profile-screen .record-row {
+    grid-template-columns: 22px 1fr auto;
+    gap: 6px;
+    min-height: 34px;
+  }
+
+  .profile-screen .record-row svg {
+    width: 17px;
+    height: 17px;
+    padding: 2px;
+  }
+
+  .profile-screen .record-row b {
+    font-size: 14px;
+  }
+
+  .profile-screen .record-row small,
+  .profile-screen .record-row em {
+    font-size: 10px;
+  }
+
   .rest-screen {
     height: 100dvh;
     padding: 10px 14px 12px;
@@ -1646,6 +1787,69 @@ input[type="range"] {
   .screen-content {
     height: calc(100dvh - 54px - env(safe-area-inset-bottom));
     padding-top: 14px;
+  }
+
+  .profile-screen {
+    height: 100dvh;
+    padding: 9px 8px calc(56px + env(safe-area-inset-bottom));
+  }
+
+  .profile-screen .profile-header {
+    margin-bottom: 6px;
+  }
+
+  .profile-screen .user-card {
+    min-height: 60px;
+    padding: 7px 10px;
+  }
+
+  .profile-screen .user-card img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .profile-screen .user-card h1 {
+    font-size: 16px;
+  }
+
+  .profile-screen .today-card {
+    margin-top: 6px;
+    padding: 8px 10px;
+  }
+
+  .profile-screen .today-card h2 {
+    font-size: 16px;
+  }
+
+  .profile-screen .steps {
+    margin-top: 6px;
+  }
+
+  .profile-screen .stats-grid {
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .profile-screen .stat-card {
+    min-height: 50px;
+    padding: 7px 8px;
+  }
+
+  .profile-screen .stat-card b {
+    font-size: 16px;
+  }
+
+  .profile-screen .records-card {
+    margin-top: 6px;
+    padding: 8px;
+  }
+
+  .profile-screen .section-heading {
+    margin-bottom: 4px;
+  }
+
+  .profile-screen .record-row {
+    min-height: 31px;
   }
 
   .home-screen .hero-card {
