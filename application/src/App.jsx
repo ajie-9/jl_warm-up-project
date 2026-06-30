@@ -8,7 +8,6 @@ import {
   ChevronRight,
   Dumbbell,
   HeartPulse,
-  Home,
   Pause,
   Play,
   RotateCcw,
@@ -139,6 +138,7 @@ function App() {
   const readinessScore = Object.values(checks).filter(Boolean).length * 20 + 2;
   const allReady = Object.values(checks).every(Boolean);
   const currentAction = selectedPlan.actions[actionIndex];
+  const warmupFlowScreens = ["home", "warmup", "readiness", "rest", "workout"];
 
   const navigate = (next) => {
     if (next === "workout") {
@@ -156,11 +156,11 @@ function App() {
           setScreen={setScreen}
           screen={screen}
           readinessScore={readinessScore}
+          warmupFlowScreens={warmupFlowScreens}
         />
 
         <section className="phone-shell" aria-label="热身 App 交互预览">
           <StatusBar />
-          <DailyReminder onStart={() => navigate("home")} />
           {screen === "setup" && (
             <SetupScreen
               step={setupStep}
@@ -180,11 +180,18 @@ function App() {
           )}
           {screen === "home" && (
             <HomeScreen
+              selectedPlan={selectedPlan}
+              onStart={() => navigate("warmup")}
+              onSetup={() => navigate("setup")}
+            />
+          )}
+          {screen === "warmup" && (
+            <WarmupScreen
               selectedId={selectedId}
               setSelectedId={setSelectedId}
               selectedPlan={selectedPlan}
+              onBack={() => navigate("home")}
               onStart={() => navigate("readiness")}
-              onSetup={() => navigate("setup")}
             />
           )}
           {screen === "readiness" && (
@@ -220,7 +227,6 @@ function App() {
           {screen === "profile" && (
             <ProfileScreen
               plan={selectedPlan}
-              onDiet={() => navigate("diet")}
               onWarmup={() => navigate("home")}
             />
           )}
@@ -239,7 +245,8 @@ function App() {
   );
 }
 
-function SidePanel({ selectedPlan, setScreen, screen, readinessScore }) {
+function SidePanel({ selectedPlan, setScreen, screen, readinessScore, warmupFlowScreens }) {
+  const isWarmupFlow = warmupFlowScreens.includes(screen);
   return (
     <aside className="side-panel">
       <div className="brand">
@@ -266,15 +273,13 @@ function SidePanel({ selectedPlan, setScreen, screen, readinessScore }) {
       </div>
       <nav className="quick-nav" aria-label="页面导航">
         {[
-          ["home", "热身方向"],
+          ["home", "热身模块"],
           ["setup", "个性化设置"],
-          ["readiness", "热身自检"],
-          ["workout", "动态热身"],
           ["profile", "我的主页"],
           ["diet", "饮食计划"],
         ].map(([id, label]) => (
           <button
-            className={screen === id ? "active" : ""}
+            className={(id === "home" ? isWarmupFlow : screen === id) ? "active" : ""}
             key={id}
             onClick={() => setScreen(id)}
           >
@@ -296,15 +301,6 @@ function StatusBar() {
   );
 }
 
-function DailyReminder({ onStart }) {
-  return (
-    <button className="daily-reminder" onClick={onStart}>
-      <BellRing size={18} />
-      <span>今日食谱已完成，快运动起来吧</span>
-    </button>
-  );
-}
-
 function ScreenHeader({ title, onBack, right }) {
   return (
     <header className="screen-header">
@@ -321,9 +317,9 @@ function ScreenHeader({ title, onBack, right }) {
   );
 }
 
-function HomeScreen({ selectedId, setSelectedId, selectedPlan, onStart, onSetup }) {
+function HomeScreen({ selectedPlan, onStart, onSetup }) {
   return (
-    <div className="screen-content">
+    <div className="screen-content home-screen">
       <div className="app-title">
         <img src={ASSET("warmup-logo-256.png")} alt="" />
         <div>
@@ -339,6 +335,46 @@ function HomeScreen({ selectedId, setSelectedId, selectedPlan, onStart, onSetup 
           <div className="pill-row">
             <span>新手友好</span>
             <span>{selectedPlan.minutes} 分钟</span>
+          </div>
+        </div>
+        <img src={ASSET("panda-coach.png")} alt="熊猫热身教练" />
+      </section>
+      <section className="home-flow-card">
+        <span>今日推荐</span>
+        <h2>{selectedPlan.title}</h2>
+        <p>{selectedPlan.cue}</p>
+        <div>
+          <b>{selectedPlan.minutes} 分钟</b>
+          <small>动态热身核心时长</small>
+        </div>
+      </section>
+      <section className="home-step-row" aria-label="热身流程">
+        {["选方向", "先自检", "再热身"].map((label, index) => (
+          <span key={label}>
+            <b>{index + 1}</b>
+            {label}
+          </span>
+        ))}
+      </section>
+      <button className="primary-btn" onClick={onStart}>
+        开始定制热身
+        <ChevronRight size={20} />
+      </button>
+    </div>
+  );
+}
+
+function WarmupScreen({ selectedId, setSelectedId, selectedPlan, onBack, onStart }) {
+  return (
+    <div className="screen-content">
+      <ScreenHeader title="定制热身" onBack={onBack} />
+      <section className="hero-card compact-hero">
+        <div>
+          <h1>{selectedPlan.title}</h1>
+          <p>{selectedPlan.cue}</p>
+          <div className="pill-row">
+            <span>{selectedPlan.minutes} 分钟</span>
+            <span>准备度 82</span>
           </div>
         </div>
         <img src={ASSET("panda-coach.png")} alt="熊猫热身教练" />
@@ -363,7 +399,7 @@ function HomeScreen({ selectedId, setSelectedId, selectedPlan, onStart, onSetup 
         </div>
       </section>
       <button className="primary-btn" onClick={onStart}>
-        开始定制热身
+        进入热身自检
         <ChevronRight size={20} />
       </button>
     </div>
@@ -632,7 +668,7 @@ function WorkoutScreen({
   );
 }
 
-function ProfileScreen({ plan, onDiet, onWarmup }) {
+function ProfileScreen({ plan, onWarmup }) {
   return (
     <div className="screen-content profile-screen">
       <div className="profile-header">
@@ -650,16 +686,6 @@ function ProfileScreen({ plan, onDiet, onWarmup }) {
           <span>准备度 82</span>
         </div>
       </section>
-      <button className="diet-entry" onClick={onDiet}>
-        <span>
-          <Utensils size={22} />
-        </span>
-        <div>
-          <b>训练后饮食计划</b>
-          <small>练完再吃，查看今日入门建议</small>
-        </div>
-        <em>查看计划</em>
-      </button>
       <section className="today-card">
         <div>
           <span>今日完成</span>
@@ -743,22 +769,20 @@ function DietScreen({ onBack }) {
 }
 
 function BottomNav({ screen, setScreen }) {
+  const isWarmupFlow = ["home", "warmup", "readiness", "rest", "workout"].includes(screen);
   return (
     <nav className="bottom-nav" aria-label="底部导航">
-      <button className={screen === "home" ? "active" : ""} onClick={() => setScreen("home")}>
-        <Home size={18} />
-        首页
-      </button>
-      <button
-        className={screen === "workout" || screen === "readiness" ? "active" : ""}
-        onClick={() => setScreen("readiness")}
-      >
-        <Activity size={18} />
-        热身
-      </button>
       <button className={screen === "profile" ? "active" : ""} onClick={() => setScreen("profile")}>
         <User size={18} />
         我的
+      </button>
+      <button className={isWarmupFlow ? "active" : ""} onClick={() => setScreen("home")}>
+        <Activity size={18} />
+        热身
+      </button>
+      <button className={screen === "diet" ? "active" : ""} onClick={() => setScreen("diet")}>
+        <Utensils size={18} />
+        饮食
       </button>
     </nav>
   );
@@ -770,7 +794,7 @@ function ActionPanel({ selectedPlan, readinessScore, screen, onScreen }) {
       <div className="panel-card">
         <span>当前流程</span>
         <h2>{screenLabel(screen)}</h2>
-        <p>按 PRD 逻辑：早上食谱提醒召回，训练前完成热身自检，结束后进入我的主页和饮食计划。</p>
+        <p>按 PRD 逻辑：早上食谱提醒召回，首页进入热身模块，再完成方向选择、自检和动态热身。</p>
       </div>
       <div className="panel-card compact">
         <AlarmClock size={22} />
@@ -792,7 +816,7 @@ function ActionPanel({ selectedPlan, readinessScore, screen, onScreen }) {
         </ul>
       </div>
       <div className="panel-actions">
-        <button onClick={() => onScreen("home")}>选择训练方向</button>
+        <button onClick={() => onScreen("warmup")}>开始定制热身</button>
         <button onClick={() => onScreen("profile")}>查看我的数据</button>
         <button onClick={() => onScreen("diet")}>查看饮食计划</button>
       </div>
@@ -807,7 +831,8 @@ function ActionPanel({ selectedPlan, readinessScore, screen, onScreen }) {
 function screenLabel(screen) {
   const labels = {
     setup: "个性化设置",
-    home: "热身方向选择",
+    home: "热身首页",
+    warmup: "热身方向选择",
     readiness: "热身前自检",
     rest: "不适提示",
     workout: "动态热身",

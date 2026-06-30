@@ -22,6 +22,14 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -45,6 +53,7 @@ button {
 .app {
   min-height: 100vh;
   padding: 24px;
+  overflow-x: hidden;
 }
 
 .workspace {
@@ -55,6 +64,7 @@ button {
   grid-template-columns: minmax(230px, 0.8fr) minmax(360px, 430px) minmax(260px, 0.9fr);
   gap: 22px;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .side-panel,
@@ -92,8 +102,7 @@ button {
   font-weight: 800;
 }
 
-.notification,
-.daily-reminder {
+.notification {
   width: 100%;
   display: flex;
   align-items: center;
@@ -200,17 +209,9 @@ button {
   letter-spacing: 1px;
 }
 
-.daily-reminder {
-  width: calc(100% - 34px);
-  min-height: 42px;
-  margin: 8px auto 2px;
-  font-size: 12px;
-  justify-content: center;
-}
-
 .screen-content {
-  height: 704px;
-  padding: 14px 18px 96px;
+  height: 756px;
+  padding: 18px 18px 96px;
   overflow-y: auto;
   scrollbar-width: none;
 }
@@ -300,8 +301,7 @@ button {
 .today-card,
 .records-card,
 .diet-hero,
-.meal-row,
-.diet-entry {
+.meal-row {
   border: 1px solid var(--line);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.88);
@@ -311,10 +311,14 @@ button {
 .hero-card {
   min-height: 150px;
   display: grid;
-  grid-template-columns: 1fr 110px;
+  grid-template-columns: minmax(0, 1fr) 110px;
   gap: 8px;
   align-items: center;
   padding: 18px;
+}
+
+.hero-card > div {
+  min-width: 0;
 }
 
 .hero-card h1 {
@@ -332,6 +336,97 @@ button {
   width: 110px;
   height: 110px;
   object-fit: contain;
+}
+
+.home-screen .hero-card {
+  min-height: 184px;
+  grid-template-columns: 1fr 128px;
+}
+
+.home-screen .hero-card h1 {
+  font-size: 25px;
+}
+
+.home-screen .hero-card img {
+  width: 126px;
+  height: 126px;
+}
+
+.compact-hero {
+  min-height: 128px;
+}
+
+.home-flow-card {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #ffffff, #ecfbe6);
+  padding: 17px;
+  box-shadow: 0 14px 30px rgba(37, 95, 37, 0.08);
+}
+
+.home-flow-card span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.home-flow-card h2 {
+  margin: 5px 0 6px;
+  font-size: 28px;
+}
+
+.home-flow-card p {
+  margin: 0;
+  color: #596760;
+  line-height: 1.5;
+}
+
+.home-flow-card div {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.home-flow-card b {
+  color: var(--green);
+  font-size: 24px;
+}
+
+.home-flow-card small {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.home-step-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.home-step-row span {
+  min-height: 74px;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: white;
+  color: #40504a;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.home-step-row b {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  background: var(--green);
 }
 
 .pill-row {
@@ -380,6 +475,7 @@ button {
 }
 
 .warmup-option {
+  min-width: 0;
   min-height: 76px;
   display: grid;
   grid-template-columns: 34px 1fr;
@@ -580,8 +676,7 @@ input[type="range"] {
 
 .coach-card,
 .score-card,
-.user-card,
-.diet-entry {
+.user-card {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -832,47 +927,6 @@ input[type="range"] {
   background: var(--green-soft);
   padding: 5px 12px;
   font-size: 12px;
-  font-weight: 900;
-}
-
-.diet-entry {
-  width: 100%;
-  margin-top: 14px;
-  text-align: left;
-}
-
-.diet-entry > span {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 16px;
-  color: white;
-  background: var(--green);
-}
-
-.diet-entry div {
-  flex: 1;
-}
-
-.diet-entry b,
-.diet-entry small {
-  display: block;
-}
-
-.diet-entry small {
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-.diet-entry em {
-  border-radius: 999px;
-  color: var(--green-dark);
-  background: #effbe9;
-  padding: 8px 11px;
-  font-size: 12px;
-  font-style: normal;
   font-weight: 900;
 }
 
@@ -1151,13 +1205,21 @@ input[type="range"] {
 }
 
 @media (max-width: 760px) {
+  :root {
+    background: #f3fff2;
+  }
+
   .app {
     padding: 0;
+    min-height: 100dvh;
   }
 
   .workspace {
-    min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    min-height: 100dvh;
     display: block;
+    overflow: hidden;
   }
 
   .side-panel,
@@ -1166,15 +1228,191 @@ input[type="range"] {
   }
 
   .phone-shell {
-    min-height: 100vh;
-    width: 100%;
+    width: 100vw;
+    max-width: 100vw;
+    min-height: 100dvh;
+    height: 100dvh;
     border: 0;
     border-radius: 0;
     box-shadow: none;
+    overflow: hidden;
+  }
+
+  .status-bar {
+    height: 30px;
+    padding: 7px 18px 0;
   }
 
   .screen-content {
-    height: calc(100vh - 142px);
+    width: 100%;
+    height: calc(100dvh - 82px - env(safe-area-inset-bottom));
+    padding: 14px 14px calc(78px + env(safe-area-inset-bottom));
+  }
+
+  .app-title,
+  .profile-header {
+    margin-bottom: 10px;
+  }
+
+  .app-title img,
+  .profile-header img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .app-title b,
+  .profile-header span {
+    font-size: 17px;
+  }
+
+  .hero-card {
+    min-height: 124px;
+    grid-template-columns: minmax(0, 1fr) clamp(82px, 26vw, 104px);
+    padding: 14px;
+  }
+
+  .hero-card h1 {
+    font-size: 20px;
+    line-height: 1.18;
+  }
+
+  .hero-card p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .hero-card img {
+    width: clamp(82px, 26vw, 104px);
+    height: clamp(82px, 26vw, 104px);
+  }
+
+  .home-screen .hero-card {
+    min-height: 132px;
+    grid-template-columns: minmax(0, 1fr) clamp(86px, 28vw, 108px);
+  }
+
+  .home-screen .hero-card h1 {
+    font-size: 22px;
+  }
+
+  .home-screen .hero-card img {
+    width: clamp(86px, 28vw, 108px);
+    height: clamp(86px, 28vw, 108px);
+  }
+
+  .pill-row {
+    margin-top: 10px;
+  }
+
+  .pill-row span,
+  .step-tag {
+    padding: 5px 9px;
+  }
+
+  .home-flow-card {
+    margin-top: 12px;
+    padding: 14px;
+  }
+
+  .home-flow-card h2 {
+    font-size: 24px;
+  }
+
+  .home-flow-card p {
+    font-size: 13px;
+  }
+
+  .home-flow-card div {
+    margin-top: 10px;
+  }
+
+  .home-flow-card b {
+    font-size: 22px;
+  }
+
+  .home-step-row {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .home-step-row span {
+    min-height: 60px;
+    font-size: 12px;
+  }
+
+  .primary-btn,
+  .warning-btn,
+  .danger-btn {
+    min-height: 48px;
+    margin-top: 12px;
+    border-radius: 15px;
+  }
+
+  .bottom-nav {
+    right: 12px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    left: 12px;
+    height: 58px;
+    border-radius: 22px;
+    padding: 7px;
+  }
+
+  .bottom-nav button {
+    border-radius: 16px;
   }
 }
 
+@media (max-width: 380px) {
+  .screen-content {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .home-screen .hero-card,
+  .hero-card {
+    grid-template-columns: minmax(0, 1fr) 80px;
+  }
+
+  .home-screen .hero-card img,
+  .hero-card img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .warmup-grid {
+    gap: 8px;
+  }
+
+  .warmup-option {
+    min-height: 70px;
+    padding: 9px;
+  }
+}
+
+@media (max-height: 740px) and (max-width: 760px) {
+  .screen-content {
+    height: calc(100dvh - 78px - env(safe-area-inset-bottom));
+    padding-top: 12px;
+  }
+
+  .home-screen .hero-card {
+    min-height: 116px;
+  }
+
+  .home-flow-card {
+    margin-top: 10px;
+    padding: 12px;
+  }
+
+  .home-flow-card h2 {
+    font-size: 22px;
+  }
+
+  .home-step-row span {
+    min-height: 54px;
+  }
+
+  .bottom-nav {
+    height: 54px;
+  }
+}
