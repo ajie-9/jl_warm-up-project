@@ -4,8 +4,11 @@ import {
   Apple,
   ArrowLeft,
   BellRing,
+  Bone,
+  CalendarCheck,
   Check,
   ChevronRight,
+  CircleHelp,
   Dumbbell,
   HeartPulse,
   Pause,
@@ -13,9 +16,11 @@ import {
   RotateCcw,
   Salad,
   ShieldCheck,
+  ShieldPlus,
   SkipBack,
   SkipForward,
   Sparkles,
+  TriangleAlert,
   User,
   Utensils,
   CircleUserRound,
@@ -210,6 +215,7 @@ function App() {
             <RestScreen
               onBack={() => navigate("home")}
               onContinue={() => navigate("workout")}
+              checks={checks}
             />
           )}
           {screen === "workout" && (
@@ -231,7 +237,7 @@ function App() {
             />
           )}
           {screen === "diet" && <DietScreen onBack={() => navigate("profile")} />}
-          <BottomNav screen={screen} setScreen={navigate} />
+          {screen !== "rest" && <BottomNav screen={screen} setScreen={navigate} />}
         </section>
 
         <ActionPanel
@@ -585,22 +591,74 @@ function ReadinessScreen({ checks, setChecks, score, allReady, plan, onBack, onS
   );
 }
 
-function RestScreen({ onBack, onContinue }) {
+function RestScreen({ onBack, onContinue, checks }) {
+  const discomfortLabels = {
+    heart: "心率异常",
+    joint: "关节不适",
+    breath: "呼吸不稳",
+    body: "身体不适",
+  };
+  const discomforts = readinessItems
+    .filter((item) => !checks[item.id])
+    .map((item) => discomfortLabels[item.id]);
+  const visibleDiscomforts = discomforts.length > 0 ? discomforts : ["关节不适", "呼吸不稳"];
+
   return (
     <div className="screen-content rest-screen">
-      <ScreenHeader title="今日建议休息" onBack={onBack} />
-      <img className="rest-panda" src={ASSET("panda-small.png")} alt="熊猫关心提示" />
-      <section className="rest-card">
-        <span>检测到不适反馈</span>
-        <h1>今天先不训练</h1>
-        <p>身体状态比完成训练更重要。建议休息并择日再练，明天早上我们继续用食谱提醒你回来。</p>
+      <ScreenHeader
+        title="今日建议休息"
+        onBack={onBack}
+        right={
+          <button className="help-btn" aria-label="帮助">
+            <CircleHelp size={21} />
+          </button>
+        }
+      />
+      <div className="rest-hero-panda">
+        <img src={ASSET("panda-small.png")} alt="熊猫关心提示" />
+      </div>
+      <section className="rest-warning-card">
+        <div>
+          <span>
+            <TriangleAlert size={20} />
+            检测到不适反馈
+          </span>
+          <h1>今天先不训练</h1>
+          <p>身体状态比完成训练更重要，建议休息并择日再练。</p>
+        </div>
+        <HeartPulse size={72} />
+      </section>
+      <section className="discomfort-card">
+        <h2>你反馈的不适</h2>
+        <div>
+          {visibleDiscomforts.slice(0, 2).map((item, index) => (
+            <span key={item}>
+              {index === 0 ? <Bone size={26} /> : <HeartPulse size={26} />}
+              {item}
+            </span>
+          ))}
+        </div>
+      </section>
+      <section className="comfort-card">
+        <img src={ASSET("panda-small.png")} alt="" />
+        <p>
+          休息不是偷懒，<br />
+          而是为了更好的进步。<br />
+          照顾好自己，我们下次见！
+        </p>
       </section>
       <button className="primary-btn" onClick={onBack}>
+        <CalendarCheck size={22} />
         记录并返回计划
       </button>
       <button className="danger-btn" onClick={onContinue}>
+        <AlarmClock size={20} />
         我还想继续训练
       </button>
+      <section className="medical-note">
+        <ShieldPlus size={20} />
+        如疼痛持续，请咨询专业人士
+      </section>
     </div>
   );
 }
