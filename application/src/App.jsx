@@ -165,7 +165,6 @@ function App() {
         />
 
         <section className="phone-shell" aria-label="热身 App 交互预览">
-          <StatusBar />
           {screen === "setup" && (
             <SetupScreen
               step={setupStep}
@@ -187,7 +186,6 @@ function App() {
             <HomeScreen
               selectedPlan={selectedPlan}
               onStart={() => navigate("warmup")}
-              onSetup={() => navigate("setup")}
             />
           )}
           {screen === "warmup" && (
@@ -298,15 +296,6 @@ function SidePanel({ selectedPlan, setScreen, screen, readinessScore, warmupFlow
   );
 }
 
-function StatusBar() {
-  return (
-    <div className="status-bar">
-      <span>9:41</span>
-      <span className="signal">▮▮▮ ︶▱</span>
-    </div>
-  );
-}
-
 function ScreenHeader({ title, onBack, right }) {
   return (
     <header className="screen-header">
@@ -323,7 +312,7 @@ function ScreenHeader({ title, onBack, right }) {
   );
 }
 
-function HomeScreen({ selectedPlan, onStart, onSetup }) {
+function HomeScreen({ selectedPlan, onStart }) {
   return (
     <div className="screen-content home-screen">
       <div className="app-title">
@@ -332,7 +321,6 @@ function HomeScreen({ selectedPlan, onStart, onSetup }) {
           <b>热身 App</b>
           <span>新手训练前的 8 分钟助手</span>
         </div>
-        <button onClick={onSetup}>个性化</button>
       </div>
       <section className="hero-card">
         <div>
