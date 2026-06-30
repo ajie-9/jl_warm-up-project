@@ -603,7 +603,7 @@ function RestScreen({ onBack, onContinue, checks }) {
         }
       />
       <div className="rest-hero-panda">
-        <img src={ASSET("panda-small.png")} alt="熊猫关心提示" />
+        <img src={ASSET("rest-advice-hero.png")} alt="熊猫关心提示" />
       </div>
       <section className="rest-warning-card">
         <div>
@@ -613,6 +613,7 @@ function RestScreen({ onBack, onContinue, checks }) {
           </span>
           <h1>今天先不训练</h1>
           <p>身体状态比完成训练更重要，建议休息并择日再练。</p>
+          <p className="rest-inline-note">休息不是偷懒，是为了更好的进步。照顾好自己，我们下次再练。</p>
         </div>
         <HeartPulse size={72} />
       </section>
@@ -626,14 +627,6 @@ function RestScreen({ onBack, onContinue, checks }) {
             </span>
           ))}
         </div>
-      </section>
-      <section className="comfort-card">
-        <img src={ASSET("panda-small.png")} alt="" />
-        <p>
-          休息不是偷懒，<br />
-          而是为了更好的进步。<br />
-          照顾好自己，我们下次见！
-        </p>
       </section>
       <button className="primary-btn" onClick={onBack}>
         <CalendarCheck size={22} />

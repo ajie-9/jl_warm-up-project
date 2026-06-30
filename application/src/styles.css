@@ -761,31 +761,22 @@ input[type="range"] {
 
 .rest-hero-panda {
   position: relative;
-  height: 118px;
+  height: 168px;
   display: grid;
   place-items: center;
-  margin-top: 4px;
+  margin: 2px 0 -1px;
   overflow: hidden;
 }
 
 .rest-hero-panda::before {
-  content: "";
-  position: absolute;
-  bottom: -34px;
-  width: 210px;
-  height: 150px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 20% 70%, rgba(34, 201, 22, 0.14), transparent 34%),
-    radial-gradient(circle at 80% 70%, rgba(34, 201, 22, 0.14), transparent 34%),
-    #e8f8e4;
+  content: none;
 }
 
 .rest-hero-panda img {
   position: relative;
   z-index: 1;
-  width: 112px;
-  height: 112px;
+  width: min(320px, 92%);
+  height: auto;
   object-fit: contain;
 }
 
@@ -828,6 +819,12 @@ input[type="range"] {
   line-height: 1.6;
 }
 
+.rest-warning-card .rest-inline-note {
+  margin-top: 7px;
+  color: #587157;
+  font-weight: 800;
+}
+
 .rest-warning-card > svg {
   color: rgba(245, 190, 47, 0.62);
 }
@@ -863,30 +860,6 @@ input[type="range"] {
   color: #bf2f39;
   background: #fff1f2;
   font-weight: 900;
-}
-
-.comfort-card {
-  display: grid;
-  grid-template-columns: 78px 1fr;
-  align-items: center;
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.comfort-card img {
-  width: 78px;
-  height: 78px;
-  object-fit: contain;
-}
-
-.comfort-card p {
-  margin: 0;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #ecfbe8, #ffffff);
-  padding: 13px 15px;
-  color: #40524b;
-  line-height: 1.58;
-  font-weight: 800;
 }
 
 .medical-note {
@@ -1734,19 +1707,17 @@ input[type="range"] {
   }
 
   .rest-hero-panda {
-    height: 56px;
+    height: 110px;
     margin-top: 0;
   }
 
   .rest-hero-panda::before {
-    bottom: -50px;
-    width: 138px;
-    height: 104px;
+    content: none;
   }
 
   .rest-hero-panda img {
-    width: 62px;
-    height: 62px;
+    width: 196px;
+    height: auto;
   }
 
   .rest-warning-card {
@@ -1775,6 +1746,12 @@ input[type="range"] {
   .rest-warning-card p {
     font-size: 12px;
     line-height: 1.38;
+  }
+
+  .rest-warning-card .rest-inline-note {
+    margin-top: 4px;
+    font-size: 11px;
+    line-height: 1.35;
   }
 
   .rest-warning-card > svg {
@@ -1806,24 +1783,6 @@ input[type="range"] {
   .discomfort-card span svg {
     width: 20px;
     height: 20px;
-  }
-
-  .comfort-card {
-    grid-template-columns: 44px 1fr;
-    gap: 8px;
-    margin-top: 8px;
-  }
-
-  .comfort-card img {
-    width: 44px;
-    height: 44px;
-  }
-
-  .comfort-card p {
-    border-radius: 15px;
-    padding: 9px 11px;
-    font-size: 13px;
-    line-height: 1.36;
   }
 
   .rest-screen .primary-btn,
@@ -2021,6 +1980,14 @@ input[type="range"] {
     min-height: 36px;
     margin-top: 7px;
     font-size: 13px;
+  }
+
+  .rest-hero-panda {
+    height: 96px;
+  }
+
+  .rest-hero-panda img {
+    width: 170px;
   }
 
   .home-screen .hero-card {
