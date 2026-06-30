@@ -1613,6 +1613,103 @@ input[type="range"] {
     font-size: 10px;
   }
 
+  .diet-screen {
+    height: 100dvh;
+    padding: 10px 10px calc(64px + env(safe-area-inset-bottom));
+    overflow: hidden;
+  }
+
+  .diet-screen .screen-header {
+    min-height: 34px;
+    margin-bottom: 6px;
+    grid-template-columns: 34px 1fr 34px;
+  }
+
+  .diet-screen .screen-header h2 {
+    font-size: 16px;
+  }
+
+  .diet-screen .icon-btn,
+  .diet-screen .header-spacer {
+    width: 32px;
+    height: 32px;
+  }
+
+  .diet-screen .diet-hero {
+    align-items: center;
+    gap: 10px;
+    border-radius: 16px;
+    padding: 10px 12px;
+  }
+
+  .diet-screen .diet-hero svg {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 auto;
+  }
+
+  .diet-screen .diet-hero h1 {
+    font-size: 18px;
+    line-height: 1.15;
+  }
+
+  .diet-screen .diet-hero p {
+    margin-top: 3px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .diet-screen .macro-grid {
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .diet-screen .stat-card {
+    min-height: 52px;
+    border-radius: 14px;
+    padding: 8px 9px;
+  }
+
+  .diet-screen .stat-card span {
+    font-size: 10px;
+  }
+
+  .diet-screen .stat-card b {
+    margin-top: 4px;
+    font-size: 16px;
+  }
+
+  .diet-screen .stat-card em {
+    top: 7px;
+    right: 7px;
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+
+  .diet-screen .meal-row {
+    min-height: 48px;
+    margin-top: 7px;
+    border-radius: 14px;
+    padding: 8px 12px;
+  }
+
+  .diet-screen .meal-row span {
+    font-size: 14px;
+  }
+
+  .diet-screen .meal-row p {
+    margin-top: 2px;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .diet-screen .primary-btn {
+    min-height: 40px;
+    margin-top: 8px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+
   .rest-screen {
     height: 100dvh;
     padding: 10px 14px 12px;
@@ -1850,6 +1947,80 @@ input[type="range"] {
 
   .profile-screen .record-row {
     min-height: 31px;
+  }
+
+  .diet-screen {
+    height: 100dvh;
+    padding: 8px 8px calc(56px + env(safe-area-inset-bottom));
+  }
+
+  .diet-screen .screen-header {
+    min-height: 30px;
+    margin-bottom: 4px;
+    grid-template-columns: 30px 1fr 30px;
+  }
+
+  .diet-screen .screen-header h2 {
+    font-size: 15px;
+  }
+
+  .diet-screen .icon-btn,
+  .diet-screen .header-spacer {
+    width: 28px;
+    height: 28px;
+  }
+
+  .diet-screen .diet-hero {
+    gap: 8px;
+    padding: 8px 10px;
+  }
+
+  .diet-screen .diet-hero svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .diet-screen .diet-hero h1 {
+    font-size: 16px;
+  }
+
+  .diet-screen .diet-hero p {
+    font-size: 10px;
+    line-height: 1.25;
+  }
+
+  .diet-screen .macro-grid {
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .diet-screen .stat-card {
+    min-height: 46px;
+    padding: 7px 8px;
+  }
+
+  .diet-screen .stat-card b {
+    font-size: 15px;
+  }
+
+  .diet-screen .meal-row {
+    min-height: 44px;
+    margin-top: 6px;
+    padding: 7px 10px;
+  }
+
+  .diet-screen .meal-row span {
+    font-size: 13px;
+  }
+
+  .diet-screen .meal-row p {
+    font-size: 11px;
+  }
+
+  .diet-screen .primary-btn {
+    min-height: 36px;
+    margin-top: 7px;
+    font-size: 13px;
   }
 
   .home-screen .hero-card {
