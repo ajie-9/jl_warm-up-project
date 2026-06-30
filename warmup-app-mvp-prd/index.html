@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>热身 App MVP PRD</title>
+  <style>
+    :root {
+      --green: #58cc02;
+      --green-deep: #2d7d16;
+      --green-soft: #eaf9e4;
+      --ink: #101917;
+      --muted: #60706a;
+      --line: #dbead9;
+      --paper: #f7fcf5;
+      --white: #ffffff;
+      --yellow: #ffc329;
+      --red: #e5484d;
+      --shadow: 0 18px 44px rgba(31, 70, 34, .12);
+      --radius: 22px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, #f2faef 0%, #ffffff 48%, #f7fcf5 100%);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1240px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 24px 0 36px;
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 20px;
+      align-self: start;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .88);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      padding: 6px 4px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: block;
+      border-radius: 15px;
+      object-fit: contain;
+      background: transparent;
+      margin-bottom: 10px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav {
+      display: grid;
+      gap: 6px;
+      padding-top: 14px;
+    }
+
+    .nav a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 14px;
+      padding: 9px 11px;
+      color: #34443d;
+      font-size: 14px;
+      font-weight: 760;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--green-deep);
+      background: var(--green-soft);
+    }
+
+    main {
+      display: grid;
+      gap: 20px;
+      min-width: 0;
+    }
+
+    section {
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 42px);
+      overflow: hidden;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(300px, .75fr);
+      gap: 28px;
+      align-items: center;
+      min-height: 600px;
+      background:
+        linear-gradient(135deg, #effbe9 0%, #ffffff 58%, #f8fcf6 100%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border: 1px solid #c6edba;
+      border-radius: 999px;
+      background: #f4fff0;
+      color: var(--green-deep);
+      font-size: 13px;
+      font-weight: 900;
+      padding: 7px 11px;
+      margin-bottom: 18px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(88, 204, 2, .16);
+    }
+
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    .hero h2 {
+      margin-bottom: 18px;
+      max-width: 760px;
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .hero p,
+    .section-title p {
+      color: #44534d;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      border-radius: 16px;
+      border: 1px solid #bfeeb0;
+      padding: 0 18px;
+      font-weight: 900;
+      color: var(--green-deep);
+      background: white;
+    }
+
+    .button.primary {
+      color: white;
+      background: var(--green);
+      border-color: var(--green);
+      box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .08);
+    }
+
+    .hero-shot {
+      width: min(100%, 340px);
+      justify-self: center;
+      border-radius: 38px;
+      border: 8px solid #101917;
+      background: #101917;
+      box-shadow: 0 24px 54px rgba(16, 25, 23, .24);
+      overflow: hidden;
+    }
+
+    .hero-shot img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 9 / 20;
+      object-fit: cover;
+      object-position: top center;
+      background: white;
+    }
+
+    .stat-strip {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stat {
+      min-height: 86px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: white;
+      padding: 12px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat strong.fit-label {
+      font-size: 19px;
+      line-height: 1.08;
+      white-space: nowrap;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 720;
+    }
+
+    .section-title {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 24px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 19px;
+      letter-spacing: 0;
+    }
+
+    .card p,
+    .card li,
+    td {
+      color: #45534e;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .card ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      background: #eefbe8;
+      color: var(--green-deep);
+      font-size: 12px;
+      font-weight: 900;
+      padding: 7px 10px;
+      margin-bottom: 12px;
+    }
+
+    .screens {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .phone-shot {
+      margin: 0;
+      border-radius: 34px;
+      border: 8px solid #101917;
+      background: #101917;
+      box-shadow: 0 20px 40px rgba(16, 25, 23, .24);
+      overflow: hidden;
+    }
+
+    .phone-shot img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 9 / 20;
+      object-fit: cover;
+      object-position: top center;
+      background: white;
+    }
+
+    .phone-shot figcaption {
+      display: none;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .flow-step {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: white;
+      padding: 15px;
+      min-height: 150px;
+    }
+
+    .flow-step b {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      color: white;
+      background: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .flow-step.danger b {
+      background: var(--red);
+    }
+
+    .flow-step h3 {
+      margin-bottom: 6px;
+      font-size: 17px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: white;
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--green-deep);
+      background: #eefbe8;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      counter-reset: check;
+    }
+
+    .check {
+      counter-increment: check;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: white;
+      padding: 15px;
+      color: #40504a;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .check::before {
+      content: counter(check);
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      margin-right: 8px;
+      color: white;
+      background: var(--green);
+      font-weight: 900;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 22px;
+    }
+
+    @media (max-width: 1080px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .nav {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero,
+      .cols-2,
+      .cols-3,
+      .screens,
+      .flow,
+      .checklist {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-shot,
+      .phone-shot {
+        width: min(100%, 360px);
+        justify-self: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 20px, 1240px);
+        padding-top: 10px;
+      }
+
+      section {
+        border-radius: 22px;
+        padding: 18px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero h2 {
+        font-size: 42px;
+      }
+
+      .stat-strip,
+      .nav {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="brand">
+        <img class="brand-mark" src="assets/warmup-logo-256.png" alt="热身 App logo">
+        <h1>热身 App <span>MVP PRD · 独立版</span></h1>
+      </div>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#overview">概览 <span>01</span></a>
+        <a href="#why">为什么做 <span>02</span></a>
+        <a href="#user">给谁做 <span>03</span></a>
+        <a href="#flow">怎么做 <span>04</span></a>
+        <a href="#screens">页面 <span>05</span></a>
+        <a href="#scope">范围 <span>06</span></a>
+        <a href="#requirements">需求 <span>07</span></a>
+        <a href="#acceptance">验收 <span>08</span></a>
+      </nav>
+    </aside>
+
+    <main>
+      <section class="hero" id="overview">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> MVP PRD · 开屏页 · 五步定制 · 动态热身 · 每日食谱提醒</div>
+          <h2>一个专注“训练前 8 分钟”的热身 App。</h2>
+          <p>这个 MVP 不做完整健身平台，只解决用户进入训练前最容易被忽略的一步：打开 App 后先用开屏页完成品牌露出，再通过五步个性化问卷了解用户，用热身方向选择页承接今天的训练目标，最后通过热身前自检决定是进入动态热身，还是休息择日再练。饮食定制只在问卷中确认意愿，计划生成后放到“我的”主页；系统每天早上推送“今日食谱已完成，快运动起来吧”，提醒用户先运动、再按当天食谱规律饮食。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#screens">查看 MVP 页面</a>
+            <a class="button" href="#acceptance">查看验收标准</a>
+          </div>
+          <div class="stat-strip">
+            <div class="stat"><strong>12 页</strong><span>开屏、定制、热身、我的、饮食定制</span></div>
+            <div class="stat"><strong>30-60 秒</strong><span>完成热身前自检</span></div>
+            <div class="stat"><strong>5-8 分钟</strong><span>动态热身核心时长</span></div>
+            <div class="stat"><strong class="fit-label">五个热身<br>活动</strong><span>可以覆盖全身所需</span></div>
+          </div>
+        </div>
+        <figure class="hero-shot">
+          <img src="assets/splash-screen.png" alt="热身 App 开屏页">
+        </figure>
+      </section>
+
+      <section id="why">
+        <div class="section-title">
+          <h2>为什么做</h2>
+          <p>很多新手小白知道自己要开始运动，却不知道怎样热身才专业：网上动作零散、健身房指导不稳定、不同训练目标对应的热身方式也不一样。这个 MVP 的核心价值，是给新手提供一个低门槛、标准化、可执行的专业热身渠道；饮食定制和早晨食谱推送作为训练后的轻量延展，用来承接用户“练完之后怎么吃”和“明天如何继续”的基础需求。</p>
+        </div>
+        <div class="grid cols-3">
+          <div class="card">
+            <span class="badge">用户问题</span>
+            <h3>不知道怎么热身</h3>
+            <p>新手常常只做几下拉伸就开始训练，或者直接照搬网上动作，不知道每个动作对应什么部位、做多久、做到什么程度。</p>
+          </div>
+          <div class="card">
+            <span class="badge">产品价值</span>
+            <h3>提供专业化热身渠道</h3>
+            <p>产品把练胸日、练背日、练肩日、练腿日和练全身拆成清晰模块，让用户按训练目标选择对应方案，而不是自己临时搜索和拼凑。</p>
+          </div>
+          <div class="card">
+            <span class="badge">体验目标</span>
+            <h3>像教练一样带着做</h3>
+            <p>每次热身都给出动作顺序、时间、重点提示和完成状态，让新手知道下一步做什么；训练结束后把饮食定制入口放到“我的”，第二天早上再用今日食谱推送召回用户，形成“提醒运动 - 完成热身 - 按食谱吃”的日常闭环。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="user">
+        <div class="section-title">
+          <h2>给谁做</h2>
+          <p>MVP 先服务已有运动意愿、但不知道如何专业热身的新手小白和初阶健身用户；他们往往也需要训练后的基础饮食建议，以及每天早上一个明确的提醒来开始当天计划，但不希望在训练前被复杂饮食方案打断。不优先服务已经训练多年、拥有成熟热身和饮食体系的人群。</p>
+        </div>
+        <div class="grid cols-3">
+          <div class="card">
+            <span class="badge">核心用户</span>
+            <h3>健身房训练 0-6 个月</h3>
+            <p>准备进入练胸日、练背日、练肩日或练腿日等力量训练，但不知道应该先做哪些热身动作、每个动作做多久、做到什么程度。</p>
+          </div>
+          <div class="card">
+            <span class="badge">使用场景</span>
+            <h3>训练开始前</h3>
+            <p>用户早上收到“今日食谱已完成，快运动起来吧”的提醒，进入 App 后选择对应训练日并完成 5-8 分钟专项热身；训练结束后再从“我的”主页查看当天食谱并按计划饮食。</p>
+          </div>
+          <div class="card">
+            <span class="badge">不建议人群</span>
+            <h3>训练经验丰富者</h3>
+            <p>已经长期训练、拥有固定热身习惯和成熟饮食安排，并能自主设计动作组合的人群，不是 MVP 的主要目标用户。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="flow">
+        <div class="section-title">
+          <h2>怎么做</h2>
+          <p>MVP 流程必须短、明确、可中断。用户打开 App 后先看到开屏页，再完成五步个性化定制：性别、运动经历、体型基础、身高体重和饮食定制意愿。用户选择“暂时不用”时直接进入热身方向选择页；选择“是，帮我定制”时先生成入门饮食计划并放到“我的”主页，同样不打断训练前流程。系统每天早上推送“今日食谱已完成，快运动起来吧”，让用户先被食谱提醒召回，再完成运动，最后按当天食谱规律饮食。</p>
+        </div>
+        <div class="flow">
+          <div class="flow-step">
+            <b>1</b>
+            <h3>开屏页</h3>
+            <p>展示 logo、产品名和一句定位，短暂停留后进入个性化定制。</p>
+          </div>
+          <div class="flow-step">
+            <b>2</b>
+            <h3>选择性别</h3>
+            <p>完成第一步轻量个性化设置，用于基础强度提示。</p>
+          </div>
+          <div class="flow-step">
+            <b>3</b>
+            <h3>运动经历</h3>
+            <p>选择曾做过的运动类型，决定默认讲解细度和强度。</p>
+          </div>
+          <div class="flow-step">
+            <b>4</b>
+            <h3>体型基础</h3>
+            <p>按 BMI &lt; 24 / BMI ≥ 24 区分小基数和大基数，用于判断动作冲击和饮食建议方向。</p>
+          </div>
+          <div class="flow-step">
+            <b>5</b>
+            <h3>身高体重</h3>
+            <p>填写身高和体重，生成初始身体画像和热身强度建议。</p>
+          </div>
+          <div class="flow-step">
+            <b>6</b>
+            <h3>饮食定制意愿</h3>
+            <p>选择是否需要训练后饮食定制；需要时生成计划并放到“我的”主页，暂时不用则直接进入热身方向。</p>
+          </div>
+          <div class="flow-step">
+            <b>7</b>
+            <h3>选择热身方向</h3>
+            <p>汇总展示练胸日、练背日、练肩日、练腿日和练全身，用户选择今天要进入的热身模块。</p>
+          </div>
+          <div class="flow-step">
+            <b>8</b>
+            <h3>热身前自检</h3>
+            <p>确认心率、关节、呼吸和身体感觉。</p>
+          </div>
+          <div class="flow-step danger">
+            <b>9</b>
+            <h3>不适提示</h3>
+            <p>检测到不适时，建议今天先不训练，休息并择日再练。</p>
+          </div>
+          <div class="flow-step">
+            <b>10</b>
+            <h3>进入热身</h3>
+            <p>自检通过后进入倒计时页，展示动作进度、运动时长和估计消耗。</p>
+          </div>
+          <div class="flow-step">
+            <b>11</b>
+            <h3>动态热身</h3>
+            <p>自检通过后完成 4 个动作，时长 5-8 分钟。</p>
+          </div>
+          <div class="flow-step">
+            <b>12</b>
+            <h3>完成记录</h3>
+            <p>记录自检、热身完成率、跳过原因和用户选择。</p>
+          </div>
+          <div class="flow-step">
+            <b>13</b>
+            <h3>我的与饮食定制</h3>
+            <p>完成训练后在“我的”主页查看今日数据，并通过小栏目进入饮食定制结果页。</p>
+          </div>
+          <div class="flow-step">
+            <b>14</b>
+            <h3>次日食谱提醒</h3>
+            <p>第二天早上推送“今日食谱已完成，快运动起来吧”，提醒用户先运动，运动后按当天食谱饮食。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="screens">
+        <div class="section-title">
+          <h2>MVP 页面</h2>
+          <p>以下按当前演示顺序展示 12 个 MVP 页面：开屏页、性别选择、身高体重、运动经历、饮食定制选择、热身方向选择、练胸日热身、热身前自检、不适提示、进入热身、我的主页和饮食定制结果页。每日食谱提醒属于系统行为规则，不额外占用页面。</p>
+        </div>
+        <div class="screens">
+          <figure class="phone-shot">
+            <img src="assets/splash-screen.png" alt="热身 App 开屏页">
+            <figcaption>热身 App 开屏页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/onboarding-gender.png?v=gender-circles" alt="性别选择页">
+            <figcaption>性别选择页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/onboarding-height-weight.png?v=standard-body" alt="身高体重选择页">
+            <figcaption>身高体重选择页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/onboarding-sports.png?v=sports-list" alt="运动经历选择页">
+            <figcaption>运动经历选择页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/onboarding-diet-choice.png?v=post-workout-diet" alt="饮食定制选择页">
+            <figcaption>饮食定制选择页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/app-home.png?v=warmup-choice-cards" alt="热身方向选择页">
+            <figcaption>热身方向选择页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/dynamic-warmup-v2.png?v=no-finish-bar" alt="练胸日热身页">
+            <figcaption>练胸日热身页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/readiness-check.png" alt="热身前自检页">
+            <figcaption>热身前自检页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/rest-advice.png" alt="不适提示页">
+            <figcaption>不适提示页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/warmup-start.png?v=centered-feedback" alt="进入热身页">
+            <figcaption>进入热身页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/profile-home.png?v=records-return" alt="我的主页">
+            <figcaption>我的主页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/diet-plan-page.png?v=my-entry" alt="饮食定制结果页">
+            <figcaption>饮食定制结果页</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="scope">
+        <div class="section-title">
+          <h2>做到什么程度</h2>
+          <p>MVP 做到可演示、可跟练、可验收的第一版热身闭环：用户能从开屏页进入 App，完成五步个性化定制，确认是否需要训练后饮食定制，然后直接进入热身方向选择页，完成 5-8 分钟动作流程，并在“我的”主页看到个人数据和训练后饮食定制入口；同时定义每日早晨食谱完成推送，用于第二天召回用户继续运动。</p>
+        </div>
+        <div class="grid cols-2">
+          <div class="card">
+            <span class="badge">P0 包含</span>
+            <ul>
+              <li>5 个热身活动：练胸日、练背日、练肩日、练腿日、练全身。</li>
+              <li>开屏页、5 步个性化定制和热身方向选择页：品牌启动、性别、运动经历、体型基础、身高体重、饮食定制意愿、五类训练方向入口。</li>
+              <li>我的主页：展示头像昵称、训练后饮食定制入口、今日完成练习、累计热身数据和最近热身记录。</li>
+              <li>饮食定制结果页：从“我的”主页进入，展示每日热量目标和入门饮食建议。</li>
+              <li>每日食谱提醒：每天早上推送“今日食谱已完成，快运动起来吧”，点击后可进入热身方向或饮食计划入口。</li>
+              <li>每个活动 4 个动作，单次流程控制在 5-8 分钟。</li>
+              <li>每个动作展示名称、时长、动作目的和完成状态。</li>
+              <li>热身前自检和不适提示作为安全前置，不作为核心卖点。</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="badge">暂不包含</span>
+            <ul>
+              <li>完整训练课程、训练计划编排和动作识别。</li>
+              <li>高度个性化算法、AI 动作纠错和穿戴设备接入。</li>
+              <li>医疗诊断、康复处方和疾病风险评估。</li>
+              <li>账号体系、会员体系、社区功能和商业化模块。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="requirements">
+        <div class="section-title">
+          <h2>功能需求</h2>
+          <p>P0 的需求按开屏页、个性化定制、训练后饮食定制入口、每日食谱提醒、热身方向选择、热身活动、页面状态和记录能力拆开，确保新手能从打开 App 到完成热身，并在第二天继续被召回，形成完整闭环。</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>模块</th>
+                <th>P0 要求</th>
+                <th>关键状态</th>
+                <th>后续增强</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>开屏页</td>
+                <td>打开 App 时展示 logo、产品名和一句定位，短暂停留后进入个性化定制。</td>
+                <td>首次打开、加载中、进入定制。</td>
+                <td>节日皮肤、品牌动效、启动加载优化。</td>
+              </tr>
+              <tr>
+                <td>个性化定制</td>
+                <td>用五步轻量问卷收集性别、运动经历、体型基础、身高体重和饮食定制意愿，用于默认强度、讲解细度、热身方案和训练后饮食建议提示。</td>
+                <td>未填写、已选择、返回修改、跳过。</td>
+                <td>目标肌群、疼痛史、训练频率、装备条件。</td>
+              </tr>
+              <tr>
+                <td>训练后饮食定制</td>
+                <td>展示“是否需要饮食定制”选择；选择“是”后生成入门饮食计划并放到“我的”主页，选择“暂时不用”直接进入热身方向选择页。饮食计划用于用户训练后查看和执行，不阻断训练前流程。</td>
+                <td>是、否、已生成、我的主页入口、饮食定制结果页。</td>
+                <td>热量目标、三餐建议、食物偏好、过敏禁忌。</td>
+              </tr>
+              <tr>
+                <td>每日食谱提醒</td>
+                <td>对已选择饮食定制的用户，每天早上推送“今日食谱已完成，快运动起来吧”。推送目标是先召回用户开始运动，运动后再引导用户按当天食谱规律饮食。</td>
+                <td>食谱已生成、推送已发送、用户点击、用户关闭、进入热身或查看食谱。</td>
+                <td>自定义推送时间、连续打卡、按训练日自动调整食谱。</td>
+              </tr>
+              <tr>
+                <td>热身方向选择</td>
+                <td>汇总展示练胸日、练背日、练肩日、练腿日、练全身五类热身方向，让用户在完成个性化定制后先选定今天的热身模块。</td>
+                <td>首次选择、返回修改、选择热身方向。</td>
+                <td>训练日推荐、历史热身入口、会员转化。</td>
+              </tr>
+              <tr>
+                <td>热身前自检</td>
+                <td>展示心率、关节、呼吸、身体感觉四项检查和准备度分。</td>
+                <td>全部正常、部分异常、用户未填写。</td>
+                <td>接入心率、睡眠、疲劳和历史训练记录。</td>
+              </tr>
+              <tr>
+                <td>进入热身页</td>
+                <td>自检正常后展示动作进度、倒计时、运动时长、估计消耗和播放控制。</td>
+                <td>倒计时中、暂停、上一动作、下一动作、完成当前动作。</td>
+                <td>动作讲解视频、实时卡路里估算、节拍提示。</td>
+              </tr>
+              <tr>
+                <td>不适提示</td>
+                <td>当用户反馈不适时展示“今日建议休息”，推荐记录并返回计划。</td>
+                <td>返回计划、我还想继续训练、咨询专业人士。</td>
+                <td>连续异常提醒、择日提醒、风险分级。</td>
+              </tr>
+              <tr>
+                <td>动态热身</td>
+                <td>按练胸日、练背日、练肩日、练腿日、练全身展示 4 个动态热身动作、时间和完成状态。</td>
+                <td>热身活动切换、完成、跳过、准备度不足、动作未完成。</td>
+                <td>动作视频、语音提示、AI 动作质量检测。</td>
+              </tr>
+              <tr>
+                <td>记录与报告</td>
+                <td>记录自检结果、异常原因、热身完成率、用户选择和时间，并在我的主页展示今日练习、累计数据、最近热身记录和饮食定制入口。</td>
+                <td>本次记录、今日完成、周趋势、异常次数。</td>
+                <td>趋势图、训练表现关联、个性化热身模板。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="acceptance">
+        <div class="section-title">
+          <h2>怎么验收</h2>
+          <p>验收重点是流程是否清晰、安全分支是否可靠、页面是否能独立支撑热身 App 的 MVP 说明。</p>
+        </div>
+        <div class="checklist">
+          <div class="check">用户打开 App 后能先看到开屏页，开屏页只做品牌露出和产品定位，不承载热身方向选择。</div>
+          <div class="check">用户能完成性别、运动经历、体型基础、身高体重和饮食定制意愿五步定制，并理解饮食定制会在训练后放到“我的”主页，不阻断热身流程。</div>
+          <div class="check">饮食定制选择页必须提供“是，帮我定制”和“暂时不用，直接训练”两个选项；选择否后进入热身方向选择页，选择是后生成计划并在“我的”主页出现入口。</div>
+          <div class="check">饮食定制结果页从“我的”主页进入，展示每日热量目标、蛋白质优先、主食不过量、蔬菜补足和返回我的按钮。</div>
+          <div class="check">每日食谱提醒文案必须明确为“今日食谱已完成，快运动起来吧”，表达顺序是先提醒用户运动，再引导用户训练后按食谱饮食。</div>
+          <div class="check">用户第二天早上收到食谱完成提醒后，点击应能进入热身方向选择或“我的”主页饮食计划入口，不能让食谱流程挡在热身流程前面。</div>
+          <div class="check">热身方向选择页放在热身前自检之前，能让用户选择练胸日、练背日、练肩日、练腿日或练全身。</div>
+          <div class="check">用户能在 60 秒内完成热身前自检，并看到准备度分。</div>
+          <div class="check">自检全部正常时，主按钮先进入热身页，展示倒计时、运动时长和估计消耗。</div>
+          <div class="check">用户反馈关节不适、呼吸不稳或身体不舒服时，必须进入“不适提示页”。</div>
+          <div class="check">不适提示页默认推荐“记录并返回计划”，并用红色按钮提供“我还想继续训练”。</div>
+          <div class="check">不适提示页不能直接出现“开始热身”或“开始训练”作为推荐按钮。</div>
+          <div class="check">练胸日、练背日、练肩日、练腿日、练全身热身页均展示 4 个动作、总时长和完成状态。</div>
+          <div class="check">我的主页展示头像昵称，并在头像卡片下方突出训练后饮食定制入口，同时保留今日完成练习、累计时长、完成率和最近热身记录。</div>
+          <div class="check">系统记录自检结果、异常原因、热身完成率和用户最终选择。</div>
+          <div class="check">所有页面保持 9:20 竖屏视觉，桌面和移动端 PRD 均可正常查看。</div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        热身 App MVP PRD · 从 AI 熊猫教练热身模块独立抽出 · 含每日食谱提醒与训练后饮食定制
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const links = Array.from(document.querySelectorAll('.nav a'));
+    const sections = links.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    const activate = () => {
+      let current = sections[0];
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top < 180) current = section;
+      }
+      links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current.id));
+    };
+    document.addEventListener('scroll', activate, { passive: true });
+    activate();
+  </script>
+</body>
+</html>
