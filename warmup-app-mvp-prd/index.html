@@ -230,6 +230,54 @@
       background: white;
     }
 
+    .hero-visual {
+      position: relative;
+      display: grid;
+      justify-items: center;
+    }
+
+    .hero-coach-card {
+      position: absolute;
+      left: -28px;
+      bottom: 28px;
+      width: min(260px, 82%);
+      display: grid;
+      grid-template-columns: 66px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      border: 1px solid #c8efbd;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 18px 34px rgba(31, 70, 34, .18);
+      padding: 11px 13px;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-coach-card img {
+      width: 66px;
+      height: 66px;
+      object-fit: contain;
+      object-position: bottom center;
+    }
+
+    .hero-coach-card strong,
+    .coach-strip strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--green-deep);
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .hero-coach-card span,
+    .coach-strip span {
+      display: block;
+      color: #52625b;
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 720;
+    }
+
     .stat-strip {
       margin-top: 26px;
       display: grid;
@@ -297,6 +345,41 @@
       border-radius: var(--radius);
       background: white;
       padding: 18px;
+    }
+
+    .coach-strip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid #c8efbd;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #f5fff1 0%, #ffffff 100%);
+      padding: 12px 14px;
+      margin: -8px 0 20px;
+    }
+
+    .coach-strip img {
+      flex: 0 0 auto;
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      object-position: bottom center;
+    }
+
+    .card.with-mascot {
+      position: relative;
+      min-height: 178px;
+      padding-right: 86px;
+    }
+
+    .card-mascot {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      width: 74px;
+      height: 74px;
+      object-fit: contain;
+      object-position: bottom center;
     }
 
     .card h3 {
@@ -493,6 +576,11 @@
         width: min(100%, 360px);
         justify-self: center;
       }
+
+      .hero-coach-card {
+        position: static;
+        margin-top: 14px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -518,6 +606,15 @@
       .nav {
         grid-template-columns: 1fr 1fr;
       }
+
+      .coach-strip {
+        align-items: flex-start;
+      }
+
+      .card.with-mascot {
+        padding-right: 18px;
+        padding-bottom: 92px;
+      }
     }
   </style>
 </head>
@@ -525,7 +622,7 @@
   <div class="page">
     <aside class="sidebar">
       <div class="brand">
-        <img class="brand-mark" src="assets/warmup-logo-256.png" alt="热身 App logo">
+        <img class="brand-mark" src="assets/warmup-logo-256.png?v=doodle-cat-unified-v1" alt="热身 App logo">
         <h1>热身 App <span>MVP PRD · 独立版</span></h1>
       </div>
       <nav class="nav" aria-label="页面导航">
@@ -543,29 +640,45 @@
     <main>
       <section class="hero" id="overview">
         <div>
-          <div class="eyebrow"><span class="dot"></span> MVP PRD · 开屏页 · 五步定制 · 动态热身 · 每日食谱提醒</div>
-          <h2>一个专注“训练前 8 分钟”的热身 App。</h2>
-          <p>这个 MVP 不做完整健身平台，只解决用户进入训练前最容易被忽略的一步：打开 App 后先用开屏页完成品牌露出，再通过五步个性化问卷了解用户，用热身方向选择页承接今天的训练目标，最后通过热身前自检决定是进入动态热身，还是休息择日再练。饮食定制只在问卷中确认意愿，计划生成后放到“我的”主页；系统每天早上推送“今日食谱已完成，快运动起来吧”，提醒用户先运动、再按当天食谱规律饮食。</p>
+          <div class="eyebrow"><span class="dot"></span> MVP PRD · 热身模块 · 定制饮食计划 · 风险筛查</div>
+          <h2>一个由“训练前热身”和“定制饮食计划”组成的 MVP。</h2>
+          <p>这个 MVP 不做完整健身平台，只聚焦两个高频新手问题：训练前不知道怎么热身，训练后不知道怎么吃。产品分为两个大模块：热身模块保留练胸、练背、练腿、练肩和全身热身五类方向，每类只保留 2 个核心动作，降低跟练成本；定制饮食计划模块先询问用户是否需要饮食计划，再通过性别、身高体重、疾病风险与疾病史补充、运动计划目标和减脂速度偏好生成入门饮食建议。系统每天早上推送“今日食谱已完成，快运动起来吧”，提醒用户先运动，再按当天食谱规律饮食。</p>
           <div class="hero-actions">
             <a class="button primary" href="#screens">查看 MVP 页面</a>
             <a class="button" href="#acceptance">查看验收标准</a>
           </div>
           <div class="stat-strip">
-            <div class="stat"><strong>12 页</strong><span>开屏、定制、热身、我的、饮食定制</span></div>
+            <div class="stat"><strong>15 页</strong><span>开屏、饮食问卷、热身、日程、饮食、我的</span></div>
             <div class="stat"><strong>30-60 秒</strong><span>完成热身前自检</span></div>
-            <div class="stat"><strong>5-8 分钟</strong><span>动态热身核心时长</span></div>
-            <div class="stat"><strong class="fit-label">五个热身<br>活动</strong><span>可以覆盖全身所需</span></div>
+            <div class="stat"><strong>3-5 分钟</strong><span>动态热身核心时长</span></div>
+            <div class="stat"><strong class="fit-label">五类热身<br>各 2 动作</strong><span>覆盖胸背腿肩和全身</span></div>
           </div>
         </div>
-        <figure class="hero-shot">
-          <img src="assets/splash-screen.png" alt="热身 App 开屏页">
-        </figure>
+        <div class="hero-visual">
+          <figure class="hero-shot">
+            <img src="assets/splash-screen.png?v=doodle-cat-unified-v1" alt="热身 App 开屏页">
+          </figure>
+          <div class="hero-coach-card" aria-label="橘猫教练提示">
+            <img src="assets/orange-cat-avatar-cutout.png" alt="橘猫健身教练">
+            <div>
+              <strong>橘猫教练陪你开始</strong>
+              <span>用更轻松的语气，把热身和饮食选择带着做完。</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="why">
         <div class="section-title">
           <h2>为什么做</h2>
-          <p>很多新手小白知道自己要开始运动，却不知道怎样热身才专业：网上动作零散、健身房指导不稳定、不同训练目标对应的热身方式也不一样。这个 MVP 的核心价值，是给新手提供一个低门槛、标准化、可执行的专业热身渠道；饮食定制和早晨食谱推送作为训练后的轻量延展，用来承接用户“练完之后怎么吃”和“明天如何继续”的基础需求。</p>
+          <p>很多新手小白知道自己要开始运动，却不知道怎样热身才专业，也不知道自己的运动计划目标应该如何匹配饮食。这个 MVP 的核心价值，是把训练前的 2 动作专项热身和训练后的入门饮食计划拆成两个清晰模块：前者降低运动开始门槛，后者通过基础信息、疾病风险和目标偏好避免给出过于粗糙的饮食建议。</p>
+        </div>
+        <div class="coach-strip">
+          <img src="assets/orange-cat-ready-cutout.png" alt="准备动作的橘猫教练">
+          <div>
+            <strong>角色感不是装饰，是降低紧张感</strong>
+            <span>橘猫会出现在选择、提醒、完成和风险提示节点，让新手觉得有人在旁边陪练，而不是面对一张冷冰冰的表单。</span>
+          </div>
         </div>
         <div class="grid cols-3">
           <div class="card">
@@ -578,10 +691,11 @@
             <h3>提供专业化热身渠道</h3>
             <p>产品把练胸日、练背日、练肩日、练腿日和练全身拆成清晰模块，让用户按训练目标选择对应方案，而不是自己临时搜索和拼凑。</p>
           </div>
-          <div class="card">
+          <div class="card with-mascot">
             <span class="badge">体验目标</span>
             <h3>像教练一样带着做</h3>
-            <p>每次热身都给出动作顺序、时间、重点提示和完成状态，让新手知道下一步做什么；训练结束后把饮食定制入口放到“我的”，第二天早上再用今日食谱推送召回用户，形成“提醒运动 - 完成热身 - 按食谱吃”的日常闭环。</p>
+            <p>每次热身只给 2 个关键动作，降低用户放弃概率；饮食计划则先问疾病风险、目标和减脂速度偏好，再生成基础建议，形成“提醒运动 - 完成热身 - 按食谱吃”的日常闭环。</p>
+            <img class="card-mascot" src="assets/orange-cat-avatar-cutout.png" alt="" aria-hidden="true">
           </div>
         </div>
       </section>
@@ -589,7 +703,7 @@
       <section id="user">
         <div class="section-title">
           <h2>给谁做</h2>
-          <p>MVP 先服务已有运动意愿、但不知道如何专业热身的新手小白和初阶健身用户；他们往往也需要训练后的基础饮食建议，以及每天早上一个明确的提醒来开始当天计划，但不希望在训练前被复杂饮食方案打断。不优先服务已经训练多年、拥有成熟热身和饮食体系的人群。</p>
+          <p>MVP 先服务已有运动意愿、但不知道如何专业热身的新手小白和初阶健身用户；他们往往也需要训练后的基础饮食建议，但不知道自己应该减脂、增肌还是保持体态。不优先服务已经训练多年、拥有成熟热身和饮食体系的人群，也不提供医疗诊断或疾病治疗建议。</p>
         </div>
         <div class="grid cols-3">
           <div class="card">
@@ -600,7 +714,7 @@
           <div class="card">
             <span class="badge">使用场景</span>
             <h3>训练开始前</h3>
-            <p>用户早上收到“今日食谱已完成，快运动起来吧”的提醒，进入 App 后选择对应训练日并完成 5-8 分钟专项热身；训练结束后再从“我的”主页查看当天食谱并按计划饮食。</p>
+            <p>用户早上收到“今日食谱已完成，快运动起来吧”的提醒，进入 App 后选择对应训练日并完成 3-5 分钟专项热身；训练结束后再从“我的”主页查看当天食谱并按计划饮食。</p>
           </div>
           <div class="card">
             <span class="badge">不建议人群</span>
@@ -613,7 +727,14 @@
       <section id="flow">
         <div class="section-title">
           <h2>怎么做</h2>
-          <p>MVP 流程必须短、明确、可中断。用户打开 App 后先看到开屏页，再完成五步个性化定制：性别、运动经历、体型基础、身高体重和饮食定制意愿。用户选择“暂时不用”时直接进入热身方向选择页；选择“是，帮我定制”时先生成入门饮食计划并放到“我的”主页，同样不打断训练前流程。系统每天早上推送“今日食谱已完成，快运动起来吧”，让用户先被食谱提醒召回，再完成运动，最后按当天食谱规律饮食。</p>
+          <p>MVP 流程必须短、明确、可中断。用户打开 App 后先看到开屏页，完成性别、身高体重后先选择是否需要定制饮食计划；选择需要时继续填写疾病风险与疾病史补充、运动计划目标和减脂速度偏好，并生成入门饮食计划放到“我的”主页；选择暂时不用时直接进入热身方向选择页。热身模块保留练胸、练背、练腿、练肩和全身五类方向，每类只展示 2 个动作。系统每天早上推送“今日食谱已完成，快运动起来吧”，让用户先被食谱提醒召回，再完成运动，最后按当天食谱规律饮食。</p>
+        </div>
+        <div class="coach-strip">
+          <img src="assets/orange-cat-coach-cutout.png" alt="讲解中的橘猫教练">
+          <div>
+            <strong>流程里的橘猫出现原则</strong>
+            <span>不抢主流程，只在用户可能犹豫的地方给短提示：选目标、看风险、开始热身、完成反馈。</span>
+          </div>
         </div>
         <div class="flow">
           <div class="flow-step">
@@ -628,61 +749,71 @@
           </div>
           <div class="flow-step">
             <b>3</b>
-            <h3>运动经历</h3>
-            <p>选择曾做过的运动类型，决定默认讲解细度和强度。</p>
+            <h3>身高体重</h3>
+            <p>填写身高和体重，生成基础身体画像和饮食热量估算。</p>
           </div>
           <div class="flow-step">
             <b>4</b>
-            <h3>体型基础</h3>
-            <p>按 BMI &lt; 24 / BMI ≥ 24 区分小基数和大基数，用于判断动作冲击和饮食建议方向。</p>
+            <h3>是否需要饮食计划</h3>
+            <p>询问用户是否需要定制饮食计划；需要则继续饮食问卷，暂时不用则直接进入热身方向。</p>
           </div>
           <div class="flow-step">
             <b>5</b>
-            <h3>身高体重</h3>
-            <p>填写身高和体重，生成初始身体画像和热身强度建议。</p>
+            <h3>疾病风险与疾病史</h3>
+            <p>在同一页勾选常见风险，并在下方补充其他疾病史、过敏、忌口或医生建议。</p>
           </div>
           <div class="flow-step">
             <b>6</b>
-            <h3>饮食定制意愿</h3>
-            <p>选择是否需要训练后饮食定制；需要时生成计划并放到“我的”主页，暂时不用则直接进入热身方向。</p>
+            <h3>选择运动计划目标</h3>
+            <p>在减肥、增肌、保持体态三个运动计划目标中选择一个，再推荐合适的饮食计划。</p>
           </div>
           <div class="flow-step">
             <b>7</b>
+            <h3>减脂速度偏好</h3>
+            <p>当目标为减肥时，继续选择慢慢瘦或快速刷脂，用于控制热量缺口。</p>
+          </div>
+          <div class="flow-step">
+            <b>8</b>
+            <h3>生成饮食计划</h3>
+            <p>根据基础信息、风险项和运动计划目标生成标准食谱，并写清每餐吃什么、吃多少。</p>
+          </div>
+          <div class="flow-step">
+            <b>9</b>
             <h3>选择热身方向</h3>
             <p>汇总展示练胸日、练背日、练肩日、练腿日和练全身，用户选择今天要进入的热身模块。</p>
           </div>
           <div class="flow-step">
-            <b>8</b>
+            <b>10</b>
             <h3>热身前自检</h3>
             <p>确认心率、关节、呼吸和身体感觉。</p>
           </div>
           <div class="flow-step danger">
-            <b>9</b>
+            <b>11</b>
             <h3>不适提示</h3>
             <p>检测到不适时，建议今天先不训练，休息并择日再练。</p>
           </div>
           <div class="flow-step">
-            <b>10</b>
+            <b>12</b>
             <h3>进入热身</h3>
             <p>自检通过后进入倒计时页，展示动作进度、运动时长和估计消耗。</p>
           </div>
           <div class="flow-step">
-            <b>11</b>
+            <b>13</b>
             <h3>动态热身</h3>
-            <p>自检通过后完成 4 个动作，时长 5-8 分钟。</p>
+            <p>自检通过后完成 2 个动作，时长 3-5 分钟。</p>
           </div>
           <div class="flow-step">
-            <b>12</b>
+            <b>14</b>
             <h3>完成记录</h3>
             <p>记录自检、热身完成率、跳过原因和用户选择。</p>
           </div>
           <div class="flow-step">
-            <b>13</b>
-            <h3>我的与饮食定制</h3>
-            <p>完成训练后在“我的”主页查看今日数据，并通过小栏目进入饮食定制结果页。</p>
+            <b>15</b>
+            <h3>日程与我的</h3>
+            <p>完成训练后在“日程”查看今日数据和最近记录；在“我的”管理个人资料、健康档案、通知、隐私和设备连接。</p>
           </div>
           <div class="flow-step">
-            <b>14</b>
+            <b>16</b>
             <h3>次日食谱提醒</h3>
             <p>第二天早上推送“今日食谱已完成，快运动起来吧”，提醒用户先运动，运动后按当天食谱饮食。</p>
           </div>
@@ -692,56 +823,75 @@
       <section id="screens">
         <div class="section-title">
           <h2>MVP 页面</h2>
-          <p>以下按当前演示顺序展示 12 个 MVP 页面：开屏页、性别选择、身高体重、运动经历、饮食定制选择、热身方向选择、练胸日热身、热身前自检、不适提示、进入热身、我的主页和饮食定制结果页。每日食谱提醒属于系统行为规则，不额外占用页面。</p>
+          <p>以下按当前演示顺序展示 15 个 MVP 页面：开屏页、性别选择、身高体重、是否需要定制饮食计划、疾病风险与疾病史补充、运动计划目标选择、减脂速度偏好、饮食定制结果页、热身方向选择、练胸日热身、热身前自检、不适提示、进入热身、日程页和我的页。顶层导航包含热身、日程、饮食、我的四个模块；每日食谱提醒属于系统行为规则，不额外占用页面。</p>
+        </div>
+        <div class="coach-strip">
+          <img src="assets/orange-cat-workout-cutout.png" alt="运动中的橘猫教练">
+          <div>
+            <strong>页面视觉要有陪伴感</strong>
+            <span>手机页面里保留同一只橘猫教练，但按场景切换乖巧提醒、挥手说明、拉伸跟练和休息安抚等不同姿态。</span>
+          </div>
         </div>
         <div class="screens">
           <figure class="phone-shot">
-            <img src="assets/splash-screen.png" alt="热身 App 开屏页">
+            <img src="assets/splash-screen.png?v=doodle-cat-unified-v1" alt="热身 App 开屏页">
             <figcaption>热身 App 开屏页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/onboarding-gender.png?v=gender-circles" alt="性别选择页">
+            <img src="assets/onboarding-gender.png?v=doodle-cat-unified-v1" alt="性别选择页">
             <figcaption>性别选择页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/onboarding-height-weight.png?v=standard-body" alt="身高体重选择页">
+            <img src="assets/onboarding-height-weight.png?v=doodle-cat-unified-v1" alt="身高体重选择页">
             <figcaption>身高体重选择页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/onboarding-sports.png?v=sports-list" alt="运动经历选择页">
-            <figcaption>运动经历选择页</figcaption>
+            <img src="assets/onboarding-diet-choice.png?v=doodle-cat-unified-v1" alt="是否需要定制饮食计划页">
+            <figcaption>是否需要定制饮食计划页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/onboarding-diet-choice.png?v=post-workout-diet" alt="饮食定制选择页">
-            <figcaption>饮食定制选择页</figcaption>
+            <img src="assets/diet-risk-check.png?v=doodle-cat-unified-v1" alt="疾病风险与疾病史补充页">
+            <figcaption>疾病风险与疾病史补充页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/app-home.png?v=warmup-choice-cards" alt="热身方向选择页">
+            <img src="assets/diet-goal-choice.png?v=doodle-cat-unified-v1" alt="运动计划目标选择页">
+            <figcaption>运动计划目标选择页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/diet-speed-choice.png?v=doodle-cat-unified-v1" alt="减脂速度偏好页">
+            <figcaption>减脂速度偏好页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/diet-plan-page.png?v=doodle-cat-unified-v1" alt="饮食定制结果页">
+            <figcaption>饮食定制结果页</figcaption>
+          </figure>
+          <figure class="phone-shot">
+            <img src="assets/app-home.png?v=doodle-cat-unified-v1" alt="热身方向选择页">
             <figcaption>热身方向选择页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/dynamic-warmup-v2.png?v=no-finish-bar" alt="练胸日热身页">
+            <img src="assets/dynamic-warmup-v2.png?v=doodle-cat-unified-v1" alt="练胸日热身页">
             <figcaption>练胸日热身页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/readiness-check.png" alt="热身前自检页">
+            <img src="assets/readiness-check.png?v=doodle-cat-unified-v1" alt="热身前自检页">
             <figcaption>热身前自检页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/rest-advice.png" alt="不适提示页">
+            <img src="assets/rest-advice.png?v=doodle-cat-unified-v1" alt="不适提示页">
             <figcaption>不适提示页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/warmup-start.png?v=centered-feedback" alt="进入热身页">
+            <img src="assets/warmup-start.png?v=doodle-cat-unified-v1" alt="进入热身页">
             <figcaption>进入热身页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/profile-home.png?v=records-return" alt="我的主页">
-            <figcaption>我的主页</figcaption>
+            <img src="assets/schedule-page.png?v=doodle-cat-unified-v1" alt="日程页">
+            <figcaption>日程页</figcaption>
           </figure>
           <figure class="phone-shot">
-            <img src="assets/diet-plan-page.png?v=my-entry" alt="饮食定制结果页">
-            <figcaption>饮食定制结果页</figcaption>
+            <img src="assets/profile-home.png?v=doodle-cat-unified-v1" alt="我的页">
+            <figcaption>我的页</figcaption>
           </figure>
         </div>
       </section>
@@ -749,18 +899,21 @@
       <section id="scope">
         <div class="section-title">
           <h2>做到什么程度</h2>
-          <p>MVP 做到可演示、可跟练、可验收的第一版热身闭环：用户能从开屏页进入 App，完成五步个性化定制，确认是否需要训练后饮食定制，然后直接进入热身方向选择页，完成 5-8 分钟动作流程，并在“我的”主页看到个人数据和训练后饮食定制入口；同时定义每日早晨食谱完成推送，用于第二天召回用户继续运动。</p>
+          <p>MVP 做到可演示、可跟练、可验收的第一版双模块闭环：用户能从开屏页进入 App，先选择是否需要定制饮食计划；选择需要时完成后续饮食问卷并获得基础饮食建议，选择暂时不用时直接进入热身方向选择页；用户也能按练胸、练背、练腿、练肩或全身完成 2 动作热身，并在“我的”主页看到个人数据、热身记录和饮食计划入口；同时定义每日早晨食谱完成推送，用于第二天召回用户继续运动。</p>
         </div>
         <div class="grid cols-2">
           <div class="card">
             <span class="badge">P0 包含</span>
             <ul>
               <li>5 个热身活动：练胸日、练背日、练肩日、练腿日、练全身。</li>
-              <li>开屏页、5 步个性化定制和热身方向选择页：品牌启动、性别、运动经历、体型基础、身高体重、饮食定制意愿、五类训练方向入口。</li>
-              <li>我的主页：展示头像昵称、训练后饮食定制入口、今日完成练习、累计热身数据和最近热身记录。</li>
-              <li>饮食定制结果页：从“我的”主页进入，展示每日热量目标和入门饮食建议。</li>
+              <li>饮食计划意愿选择页：询问是否需要定制饮食计划，选择需要时继续问卷，选择暂时不用时直接进入热身方向。</li>
+              <li>定制饮食计划问卷：性别、身高体重、饮食计划意愿、疾病风险与疾病史补充、运动计划目标选择和减脂速度偏好。</li>
+              <li>底部导航：顶层模块固定为热身、日程、饮食、我的四项。</li>
+              <li>日程页：从原“我的”页中拆出今日完成练习、累计热身数据和最近热身记录。</li>
+              <li>我的页：展示头像昵称、个人资料、健康档案、目标设置、通知提醒、隐私与数据、设备连接和帮助反馈等设置入口。</li>
+              <li>饮食定制结果页：从问卷完成或“我的”主页进入，展示每日热量目标、风险提示和早餐/午餐/加餐/晚餐标准食谱。</li>
               <li>每日食谱提醒：每天早上推送“今日食谱已完成，快运动起来吧”，点击后可进入热身方向或饮食计划入口。</li>
-              <li>每个活动 4 个动作，单次流程控制在 5-8 分钟。</li>
+              <li>每个热身方向 2 个动作，单次流程控制在 3-5 分钟。</li>
               <li>每个动作展示名称、时长、动作目的和完成状态。</li>
               <li>热身前自检和不适提示作为安全前置，不作为核心卖点。</li>
             </ul>
@@ -770,7 +923,7 @@
             <ul>
               <li>完整训练课程、训练计划编排和动作识别。</li>
               <li>高度个性化算法、AI 动作纠错和穿戴设备接入。</li>
-              <li>医疗诊断、康复处方和疾病风险评估。</li>
+              <li>医疗诊断、康复处方和疾病治疗建议。</li>
               <li>账号体系、会员体系、社区功能和商业化模块。</li>
             </ul>
           </div>
@@ -780,7 +933,7 @@
       <section id="requirements">
         <div class="section-title">
           <h2>功能需求</h2>
-          <p>P0 的需求按开屏页、个性化定制、训练后饮食定制入口、每日食谱提醒、热身方向选择、热身活动、页面状态和记录能力拆开，确保新手能从打开 App 到完成热身，并在第二天继续被召回，形成完整闭环。</p>
+          <p>P0 的需求按开屏页、饮食计划意愿、定制饮食计划问卷、每日食谱提醒、热身方向选择、热身活动、页面状态和记录能力拆开，确保新手能从打开 App 到选择是否需要饮食建议、完成 2 动作热身，并在第二天继续被召回，形成完整闭环。</p>
         </div>
         <div class="table-wrap">
           <table>
@@ -800,16 +953,34 @@
                 <td>节日皮肤、品牌动效、启动加载优化。</td>
               </tr>
               <tr>
-                <td>个性化定制</td>
-                <td>用五步轻量问卷收集性别、运动经历、体型基础、身高体重和饮食定制意愿，用于默认强度、讲解细度、热身方案和训练后饮食建议提示。</td>
-                <td>未填写、已选择、返回修改、跳过。</td>
-                <td>目标肌群、疼痛史、训练频率、装备条件。</td>
+                <td>基础信息</td>
+                <td>收集性别、身高和体重，形成饮食计划的基础画像；性别只保留男、女两个选项，身高体重沿用滑杆或输入控件。</td>
+                <td>未填写、已选择、返回修改、校验失败。</td>
+                <td>年龄、训练频率、体脂率、目标体重。</td>
               </tr>
               <tr>
-                <td>训练后饮食定制</td>
-                <td>展示“是否需要饮食定制”选择；选择“是”后生成入门饮食计划并放到“我的”主页，选择“暂时不用”直接进入热身方向选择页。饮食计划用于用户训练后查看和执行，不阻断训练前流程。</td>
-                <td>是、否、已生成、我的主页入口、饮食定制结果页。</td>
-                <td>热量目标、三餐建议、食物偏好、过敏禁忌。</td>
+                <td>饮食计划意愿</td>
+                <td>在身高体重之后询问用户是否需要定制饮食计划。选择“是，帮我定制”时继续进入疾病风险、运动计划目标和速度偏好；选择“暂时不用，直接训练”时跳过饮食问卷，直接进入热身方向选择页。</td>
+                <td>需要定制、暂时不用、返回修改、进入热身方向。</td>
+                <td>稍后提醒、训练后再次询问、按用户目标推荐开启饮食计划。</td>
+              </tr>
+              <tr>
+                <td>疾病风险与疾病史</td>
+                <td>在同一页提供常见疾病史勾选项：高血压、糖尿病、高血脂、痛风、胃肠问题、食物过敏、肾脏疾病、无以上情况；下方提供自由文本输入区，让用户补充其他疾病史、过敏、忌口、用药或医生建议。用户可以留空，但系统要明确提示该信息只用于饮食建议参考，不构成医疗诊断。</td>
+                <td>无风险、多选风险、已补充、留空、风险提示展示。</td>
+                <td>疾病分级、禁忌食物库、医生建议上传、语音输入。</td>
+              </tr>
+              <tr>
+                <td>运动计划目标与速度</td>
+                <td>运动计划目标提供减肥、增肌、保持体态三个选项；系统将根据用户的运动计划目标推荐合适的饮食计划。当用户选择减肥时，继续询问“慢慢瘦”或“快速刷脂”。慢慢瘦对应温和热量缺口，快速刷脂对应更严格但仍需风险提示的方案。</td>
+                <td>减肥、增肌、保持体态、慢慢瘦、快速刷脂。</td>
+                <td>目标周期、每周体重变化、训练日/休息日食谱。</td>
+              </tr>
+              <tr>
+                <td>定制饮食计划</td>
+                <td>对已选择“是，帮我定制”的用户，根据基础信息、疾病风险、补充疾病史、运动计划目标和速度偏好生成入门饮食计划，并放到“饮食”模块。饮食计划必须展示热量目标、风险提醒，以及早餐、午餐、加餐、晚餐的具体食物、克数/毫升数和大致热量，不能只给“高蛋白、少主食、补蔬菜”这类空泛原则。</td>
+                <td>已生成、饮食 tab 入口、饮食定制结果页、风险提醒、标准食谱。</td>
+                <td>食物偏好、过敏禁忌、三餐替换、购物清单、按训练日调整食谱。</td>
               </tr>
               <tr>
                 <td>每日食谱提醒</td>
@@ -843,13 +1014,13 @@
               </tr>
               <tr>
                 <td>动态热身</td>
-                <td>按练胸日、练背日、练肩日、练腿日、练全身展示 4 个动态热身动作、时间和完成状态。</td>
+                <td>按练胸日、练背日、练肩日、练腿日、练全身展示 2 个动态热身动作、时间和完成状态。</td>
                 <td>热身活动切换、完成、跳过、准备度不足、动作未完成。</td>
                 <td>动作视频、语音提示、AI 动作质量检测。</td>
               </tr>
               <tr>
                 <td>记录与报告</td>
-                <td>记录自检结果、异常原因、热身完成率、用户选择和时间，并在我的主页展示今日练习、累计数据、最近热身记录和饮食定制入口。</td>
+                <td>记录自检结果、异常原因、热身完成率、用户选择和时间，并在日程页展示今日练习、累计数据和最近热身记录。</td>
                 <td>本次记录、今日完成、周趋势、异常次数。</td>
                 <td>趋势图、训练表现关联、个性化热身模板。</td>
               </tr>
@@ -865,9 +1036,11 @@
         </div>
         <div class="checklist">
           <div class="check">用户打开 App 后能先看到开屏页，开屏页只做品牌露出和产品定位，不承载热身方向选择。</div>
-          <div class="check">用户能完成性别、运动经历、体型基础、身高体重和饮食定制意愿五步定制，并理解饮食定制会在训练后放到“我的”主页，不阻断热身流程。</div>
-          <div class="check">饮食定制选择页必须提供“是，帮我定制”和“暂时不用，直接训练”两个选项；选择否后进入热身方向选择页，选择是后生成计划并在“我的”主页出现入口。</div>
-          <div class="check">饮食定制结果页从“我的”主页进入，展示每日热量目标、蛋白质优先、主食不过量、蔬菜补足和返回我的按钮。</div>
+          <div class="check">用户能先完成基础信息：性别、身高体重，并看到“是否需要定制饮食计划”选择页。</div>
+          <div class="check">饮食计划意愿页必须提供“是，帮我定制”和“暂时不用，直接训练”两个选择；选择是后继续疾病风险、运动计划目标和减脂速度偏好，选择暂时不用后直接进入热身方向选择页。</div>
+          <div class="check">疾病风险页必须包含高血压、糖尿病、高血脂、痛风、胃肠问题、食物过敏、肾脏疾病和无以上情况；用户可多选，并能在同页下方自行说明疾病史、过敏、忌口、用药或医生建议。</div>
+          <div class="check">运动计划目标必须包含减肥、增肌、保持体态；当用户选择减肥时，必须继续询问慢慢瘦或快速刷脂。</div>
+          <div class="check">饮食定制结果页从问卷完成或“我的”主页进入，必须展示每日热量目标、风险提示、早餐/午餐/加餐/晚餐的具体食物和份量，并保留返回我的按钮。</div>
           <div class="check">每日食谱提醒文案必须明确为“今日食谱已完成，快运动起来吧”，表达顺序是先提醒用户运动，再引导用户训练后按食谱饮食。</div>
           <div class="check">用户第二天早上收到食谱完成提醒后，点击应能进入热身方向选择或“我的”主页饮食计划入口，不能让食谱流程挡在热身流程前面。</div>
           <div class="check">热身方向选择页放在热身前自检之前，能让用户选择练胸日、练背日、练肩日、练腿日或练全身。</div>
@@ -876,15 +1049,17 @@
           <div class="check">用户反馈关节不适、呼吸不稳或身体不舒服时，必须进入“不适提示页”。</div>
           <div class="check">不适提示页默认推荐“记录并返回计划”，并用红色按钮提供“我还想继续训练”。</div>
           <div class="check">不适提示页不能直接出现“开始热身”或“开始训练”作为推荐按钮。</div>
-          <div class="check">练胸日、练背日、练肩日、练腿日、练全身热身页均展示 4 个动作、总时长和完成状态。</div>
-          <div class="check">我的主页展示头像昵称，并在头像卡片下方突出训练后饮食定制入口，同时保留今日完成练习、累计时长、完成率和最近热身记录。</div>
+          <div class="check">练胸日、练背日、练肩日、练腿日、练全身热身页均展示 2 个动作、总时长和完成状态。</div>
+          <div class="check">顶层页面必须有四项 tabbar：热身、日程、饮食、我的；热身方向页选中热身，日程页选中日程，饮食结果页选中饮食，我的页选中我的。</div>
+          <div class="check">日程页展示今日完成练习、累计时长、完成率和最近热身记录；这些内容不再堆在我的页里。</div>
+          <div class="check">我的页展示头像昵称，并提供个人资料、健康档案、目标设置、通知提醒、隐私与数据、设备连接和帮助反馈等设置入口。</div>
           <div class="check">系统记录自检结果、异常原因、热身完成率和用户最终选择。</div>
           <div class="check">所有页面保持 9:20 竖屏视觉，桌面和移动端 PRD 均可正常查看。</div>
         </div>
       </section>
 
       <div class="footer-note">
-        热身 App MVP PRD · 从 AI 熊猫教练热身模块独立抽出 · 含每日食谱提醒与训练后饮食定制
+        热身 App MVP PRD · AI 橘猫教练双模块 MVP · 含每日食谱提醒、定制饮食计划和 2 动作热身
       </div>
     </main>
   </div>
